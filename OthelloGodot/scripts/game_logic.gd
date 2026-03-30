@@ -96,6 +96,14 @@ func is_game_over() -> bool:
 	return get_valid_moves(Piece.BLACK).size() == 0 and get_valid_moves(Piece.WHITE).size() == 0
 
 
+func get_corners(player: Piece) -> int:
+	var count := 0
+	for pos in [Vector2i(0, 0), Vector2i(0, 7), Vector2i(7, 0), Vector2i(7, 7)]:
+		if board[pos.x][pos.y] == player:
+			count += 1
+	return count
+
+
 func duplicate_board() -> Array:
 	var new_board := []
 	for row in range(BOARD_SIZE):
