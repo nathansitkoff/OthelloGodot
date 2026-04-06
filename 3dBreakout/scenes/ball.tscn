@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/ball.gd" id="1"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1"]
+radius = 0.2
+
+[sub_resource type="StandardMaterial3D" id="BallMat"]
+albedo_color = Color(1, 1, 1, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="PhysicsMaterial" id="BallPhys"]
+bounce = 1.0
+friction = 0.0
+
+[node name="Ball" type="RigidBody3D"]
+collision_layer = 4
+collision_mask = 7
+gravity_scale = 0.0
+continuous_cd = true
+physics_material_override = SubResource("BallPhys")
+script = ExtResource("1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("BallMat")
+mesh = SubResource("SphereMesh_1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_1")
